@@ -14,7 +14,7 @@ class maze:
                     ]
         self.ply = pos(5, 1)
         self.end = pos(2, 6)
-        self.maze[self.ply.y][self.ply.x] = "P"
+        self.maze[self.ply.y][self.ply.x] = "B"
         self.maze[self.end.y][self.end.x] = "E"
     
     def isInBound(self, y, x):
@@ -44,7 +44,7 @@ class maze:
         if self.isInBound(next_move.y,next_move.x):
             if self.maze[next_move.y][next_move.x] == " ":
                 self.maze[self.ply.y][self.ply.x] = " "
-                self.maze[next_move.y][next_move.x] = "P"
+                self.maze[next_move.y][next_move.x] = "B"
                 self.ply = next_move
                 time.sleep(0.25)
             if self.maze[next_move.y][next_move.x] == "E":
@@ -57,7 +57,7 @@ class maze:
         if self.isInBound(next_move.y,next_move.x):
             if self.maze[next_move.y][next_move.x] == " ":
                 self.maze[self.ply.y][self.ply.x] = " "
-                self.maze[next_move.y][next_move.x] = "P"
+                self.maze[next_move.y][next_move.x] = "B"
                 self.ply = next_move
                 time.sleep(0.25)
             if self.maze[next_move.y][next_move.x] == "E":
@@ -70,7 +70,7 @@ class maze:
         if self.isInBound(next_move.y,next_move.x):
             if self.maze[next_move.y][next_move.x] == " ":
                 self.maze[self.ply.y][self.ply.x] = " "
-                self.maze[next_move.y][next_move.x] = "P"
+                self.maze[next_move.y][next_move.x] = "B"
                 self.ply = next_move
                 time.sleep(0.25)
             if self.maze[next_move.y][next_move.x] == "E":
@@ -83,7 +83,7 @@ class maze:
         if self.isInBound(next_move.y,next_move.x):
             if self.maze[next_move.y][next_move.x] == " ":
                 self.maze[self.ply.y][self.ply.x] = " "
-                self.maze[next_move.y][next_move.x] = "P"
+                self.maze[next_move.y][next_move.x] = "B"
                 self.ply = next_move
                 time.sleep(0.25)
             if self.maze[next_move.y][next_move.x] == "E":
@@ -99,7 +99,6 @@ class pos:
     def __init__(self, y, x) -> None:
         self.y = y
         self.x = x
-
 
 class Stack:
 
@@ -129,55 +128,35 @@ class Stack:
         self._size = self._size + 1
 
 class _StackNode:
+
     def __init__(self, item, link):
         self.item = item
         self.next = link
 
-class Queue:
-    def __init__(self):
-        self._qList = list()
-
-    def isEmpty(self):
-        return len(self) == 0
-    
-    def __len__(self):
-        return len(self._qList)
-    
-    def enqueue(self, item):
-        self._qList.append(item)
-
-    def dequeue(self):
-        assert not self.isEmpty(), "Cannot dequeue from an empty queue."
-        return self._qList.pop(0)
-
-
 if __name__ == '__main__':
 
     m = maze()
+    s = Stack()
     m.print()
-    while True:
-        if keyboard.is_pressed("q"):
-            print("Quit Program")
-            break
-        if keyboard.is_pressed("w"):
-            if m.move_up():
-                m.print()
-            else:
-                break
-        if keyboard.is_pressed("s"):
-            if m.move_down():
-                m.print()
-            else:
-                break
-        if keyboard.is_pressed("a"):
-            if m.move_left():
-                m.print()
-            else:
-                break
-        if keyboard.is_pressed("d"):
-            if m.move_right():
-                m.print()
-            else:
-                break
 
-#TESTASasASs
+    # m.move_up()
+    #m.print()
+    #s.push((m.ply.x,m.ply.y))
+    
+    # while True:
+    #     if m.isInBound():
+    while True:
+        #m.move_up()
+        # print(m.ply.x, m.ply.y)
+        if m.maze[m.ply.y-1][m.ply.x] == " ":#เช้คตำแหน่ง
+            m.move_up()
+            m.print()
+        elif m.maze[m.ply.y+1][m.ply.x] == " ":
+                m.move_down()
+                m.print()
+        elif m.maze[m.ply.y][m.ply.x-1] == " ":
+                    m.move_left()
+                    m.print()
+        elif m.maze[m.ply.y][m.ply.x+1] == " " :
+                        m.move_right()
+                        m.print() 
