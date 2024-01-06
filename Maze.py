@@ -138,7 +138,7 @@ if __name__ == '__main__':
     m = maze()
     s = Stack()
     m.print()
-
+    sn = _StackNode
     # m.move_up()
     #m.print()
     #s.push((m.ply.x,m.ply.y))
@@ -146,17 +146,45 @@ if __name__ == '__main__':
     # while True:
     #     if m.isInBound():
     while True:
+        s.push((m.ply.y,m.ply.x))
         #m.move_up()
         # print(m.ply.x, m.ply.y)
+
         if m.maze[m.ply.y-1][m.ply.x] == " ":#เช้คตำแหน่ง
             m.move_up()
+            a = s.peek()
+            m.maze[a[0]][a[1]]= 'u'
+           
             m.print()
-        elif m.maze[m.ply.y+1][m.ply.x] == " ":
-                m.move_down()
-                m.print()
-        elif m.maze[m.ply.y][m.ply.x-1] == " ":
-                    m.move_left()
-                    m.print()
+            s.push((m.ply.y,m.ply.x))
+            #m.maze[m.ply.y][m.ply.x]= 'O'
+            
+            m.print()
+
+        
+        # elif m.maze[m.ply.y-1][m.ply.x] == "X":
+        #     m.move_down()
+        #     m.print()
+        # elif m.maze[m.ply.y][m.ply.x-1] == "X ":
+        #             m.move_left()
+        #             m.print()
         elif m.maze[m.ply.y][m.ply.x+1] == " " :
-                        m.move_right()
-                        m.print() 
+            m.move_right()
+            a = s.peek()
+            m.maze[a[0]][a[1]]= 'r'
+            m.print()
+        elif m.maze[m.ply.y-1][m.ply.x+1] == "X":
+            m.move_down()
+            a = s.peek()
+            m.maze[a[0]][a[1]]= 'd'
+            m.print() 
+        elif m.maze[m.ply.y][m.ply.x-1] == "X ":
+            m.move_left()
+            a = s.peek()
+            m.maze[a[0]][a[1]]= 'l'
+            m.print()
+        # elif m.maze[m.ply.y][m.ply.x] =="E" :
+        #     m.printEND()
+
+
+        
